@@ -212,7 +212,7 @@ const I18N = {
     "team.n3": "Lương Bảo Khang", "team.r3": "Data & Labeling", "team.a3": "10 Vinschool The Harmony",
     "team.n4": "Phạm Hoài Anh", "team.r4": "Report & Presentation", "team.a4": "Grade 10 · Dwight",
     "team.n5": "Đoàn Quang Huy", "team.r5": "Evaluation & Testing", "team.a5": "Dunman Secondary School Singapore",
-    "team.n6": "Đặng Quang Vinh", "team.r6": "Interface & Programming", "team.a6": "Lớp 10A5 THPT Cầu Giấy",
+    "team.n6": "Đặng Quang Vinh", "team.r6": "Interface & Programming", "team.a6": "Class 10A5 Cau Giay Highschool",
     "team.n7": "Vương Quang Nghị", "team.r7": "Model training", "team.a7": "Grade 9 · Dewey",
 
     "gal.heading": "Gallery",
