@@ -111,8 +111,8 @@
       <section class="page-section proj-desc">
         <h2 class="section-h" data-i18n="desc.heading">Mô tả đề tài</h2>
         <div class="desc-grid">
-          <p data-i18n="desc.body1">Tóm tắt mục tiêu và bối cảnh đề tài sẽ được cập nhật tại đây. Phần này sẽ giới thiệu vấn đề, lý do chọn quả vải và hướng tiếp cận chung.</p>
-          <p data-i18n="desc.body2">Chi tiết về phạm vi, dữ liệu huấn luyện và kiến trúc mô hình sẽ được bổ sung cùng tài liệu dự án.</p>
+          <p data-i18n="desc.body1">Đề tài nghiên cứu ứng dụng Mạng Nơ-ron Tích chập (CNNs) để tự động phân loại độ chín của quả vải, sử dụng trí tuệ nhân tạo và xử lý hình ảnh nhằm xác định độ chín dựa trên màu sắc và đặc điểm của vỏ quả.</p>
+          <p data-i18n="desc.body2">Quá trình thực hiện bao gồm thu thập hình ảnh quả vải ở các giai đoạn chín khác nhau, gán nhãn và chuẩn hóa dữ liệu, huấn luyện mô hình CNN, sau đó kiểm tra và đánh giá kết quả bằng các chỉ số Accuracy, Precision, Recall và F1-Score.</p>
         </div>
         <ul class="chips">
           <li data-i18n="desc.chip1">Lĩnh vực: Computer Vision &amp; AI</li>
@@ -274,23 +274,23 @@
     <section class="view" data-view="significance">
       <div class="page-head">
         <h1 class="section-h" data-i18n="sig.heading">Ý nghĩa của đề tài</h1>
-        <p class="section-lede" data-i18n="sig.lede">Ý nghĩa khoa học và thực tiễn của đề tài sẽ được trình bày tại đây.</p>
+        <p class="section-lede" data-i18n="sig.lede">Ý nghĩa khoa học và thực tiễn của việc dùng CNN để phân loại độ chín quả vải.</p>
       </div>
       <div class="placeholder-layout">
         <div class="ph-block">
           <span class="ph-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4L4.2 8.7l5.4-.8L12 3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
           <h3 data-i18n="sig.p1h">Giá trị khoa học</h3>
-          <p data-i18n="sig.p1">Đóng góp của phương pháp phân loại ảnh quả vải sẽ được mô tả tại đây.</p>
+          <p data-i18n="sig.p1">Nghiên cứu tìm hiểu mối liên hệ giữa đặc điểm bề ngoài của quả vải và mức độ chín, đánh giá xem những thay đổi về hình ảnh có đủ để mô hình CNN phân biệt các giai đoạn chín hay không.</p>
         </div>
         <div class="ph-block">
           <span class="ph-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3 12l4-4 5 5 9-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <h3 data-i18n="sig.p2h">Giá trị thực tiễn</h3>
-          <p data-i18n="sig.p2">Ứng dụng tiềm năng cho thu hoạch và phân loại quả vải sẽ được nêu tại đây.</p>
+          <p data-i18n="sig.p2">Việc đánh giá độ chín hiện nay chủ yếu dựa vào mắt và kinh nghiệm, dễ gây sai lệch giữa người đánh giá. Nếu đạt độ chính xác phù hợp, mô hình có thể trở thành công cụ hỗ trợ phân loại và kiểm tra chất lượng quả vải nhanh chóng, nhất quán.</p>
         </div>
         <div class="ph-block">
           <span class="ph-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v5M12 16h.01" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></span>
-          <h3 data-i18n="sig.p3h">Tiềm năng mở rộng</h3>
-          <p data-i18n="sig.p3">Hướng mở rộng sang các loại trái cây khác sẽ được bàn tới tại đây.</p>
+          <h3 data-i18n="sig.p3h">Tiềm năng và hạn chế</h3>
+          <p data-i18n="sig.p3">Phương pháp dựa trên hình ảnh chủ yếu cung cấp thông tin bề mặt, nên khó phát hiện hư hỏng bên trong quả. Đây là cơ sở để xem xét kết hợp thêm các cảm biến khác trong những nghiên cứu tiếp theo.</p>
         </div>
       </div>
     </section>
@@ -299,14 +299,14 @@
     <section class="view" data-view="timeline">
       <div class="page-head">
         <h1 class="section-h" data-i18n="tl.heading">Timeline dự án</h1>
-        <p class="section-lede" data-i18n="tl.lede">Các mốc thực hiện của dự án sẽ được cập nhật tại đây.</p>
+        <p class="section-lede" data-i18n="tl.lede">Các mốc chính trong quá trình xây dựng và đánh giá mô hình LycheeScan.</p>
       </div>
       <ol class="timeline">
-        <li><span class="t-date" aria-hidden="true">-</span><div><h3 data-i18n="tl.m1">Khởi tạo ý tưởng</h3><p data-i18n="tl.m1d">Mô tả công việc tại mốc này.</p></div></li>
-        <li><span class="t-date" aria-hidden="true">-</span><div><h3 data-i18n="tl.m2">Thu thập dữ liệu</h3><p data-i18n="tl.m2d">Mô tả công việc tại mốc này.</p></div></li>
-        <li><span class="t-date" aria-hidden="true">-</span><div><h3 data-i18n="tl.m3">Huấn luyện mô hình</h3><p data-i18n="tl.m3d">Mô tả công việc tại mốc này.</p></div></li>
-        <li><span class="t-date" aria-hidden="true">-</span><div><h3 data-i18n="tl.m4">Xây dựng giao diện</h3><p data-i18n="tl.m4d">Mô tả công việc tại mốc này.</p></div></li>
-        <li><span class="t-date" aria-hidden="true">-</span><div><h3 data-i18n="tl.m5">Triển lãm NCKH</h3><p data-i18n="tl.m5d">Mô tả công việc tại mốc này.</p></div></li>
+        <li><span class="t-date" aria-hidden="true">-</span><div><h3 data-i18n="tl.m1">Khởi tạo ý tưởng</h3><p data-i18n="tl.m1d">Xác định đề tài và mục tiêu nghiên cứu, phạm vi ứng dụng CNN cho bài toán phân loại độ chín quả vải.</p></div></li>
+        <li><span class="t-date" aria-hidden="true">-</span><div><h3 data-i18n="tl.m2">Thu thập dữ liệu</h3><p data-i18n="tl.m2d">Thu thập hình ảnh quả vải ở các mức độ chín khác nhau, gán nhãn và chuẩn hóa dữ liệu để phục vụ huấn luyện.</p></div></li>
+        <li><span class="t-date" aria-hidden="true">-</span><div><h3 data-i18n="tl.m3">Huấn luyện mô hình</h3><p data-i18n="tl.m3d">Xây dựng và huấn luyện mô hình CNN trên bộ dữ liệu đã gán nhãn, kiểm tra trên hình ảnh mới và đánh giá bằng Accuracy, Precision, Recall, F1-Score.</p></div></li>
+        <li><span class="t-date" aria-hidden="true">-</span><div><h3 data-i18n="tl.m4">Xây dựng giao diện</h3><p data-i18n="tl.m4d">Phát triển giao diện LycheeScan để người dùng tải ảnh và xem kết quả phân tích độ chín.</p></div></li>
+        <li><span class="t-date" aria-hidden="true">-</span><div><h3 data-i18n="tl.m5">Triển lãm NCKH</h3><p data-i18n="tl.m5d">Trình bày kết quả thực nghiệm, đánh giá khả năng ứng dụng thực tế và đề xuất hướng phát triển tiếp.</p></div></li>
       </ol>
     </section>
 
@@ -314,12 +314,12 @@
     <section class="view" data-view="future">
       <div class="page-head">
         <h1 class="section-h" data-i18n="future.heading">Ý tưởng phát triển</h1>
-        <p class="section-lede" data-i18n="future.lede">Hướng phát triển tiếp theo của sản phẩm sẽ giới thiệu tại đây.</p>
+        <p class="section-lede" data-i18n="future.lede">Hướng phát triển tiếp theo nhằm mở rộng khả năng ứng dụng của mô hình.</p>
       </div>
       <ul class="idea-list">
-        <li><span class="ph-icon sm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 3v4M3 5h4M19 17v4M17 19h4M12 4l1.7 4.3L18 10l-4.3 1.7L12 16l-1.7-4.3L6 10l4.3-1.7L12 4z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><h3 data-i18n="future.i1h">Mở rộng loại trái cây</h3><p data-i18n="future.i1">Mô tả ý tưởng phát triển tại đây.</p></div></li>
-        <li><span class="ph-icon sm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="6" width="16" height="12" rx="2" stroke="currentColor" stroke-width="2"/><path d="M9 10h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><div><h3 data-i18n="future.i2h">Phiên bản di động</h3><p data-i18n="future.i2">Mô tả ý tưởng phát triển tại đây.</p></div></li>
-        <li><span class="ph-icon sm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 18l6-6 4 4 6-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><h3 data-i18n="future.i3h">Tích hợp trực tiếp tại nhà máy</h3><p data-i18n="future.i3">Mô tả ý tưởng phát triển tại đây.</p></div></li>
+        <li><span class="ph-icon sm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 3v4M3 5h4M19 17v4M17 19h4M12 4l1.7 4.3L18 10l-4.3 1.7L12 16l-1.7-4.3L6 10l4.3-1.7L12 4z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><h3 data-i18n="future.i1h">Mở rộng loại trái cây</h3><p data-i18n="future.i1">Áp dụng phương pháp cho các loại trái cây khác có sự thay đổi màu sắc và đặc điểm vỏ theo độ chín.</p></div></li>
+        <li><span class="ph-icon sm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="6" width="16" height="12" rx="2" stroke="currentColor" stroke-width="2"/><path d="M9 10h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><div><h3 data-i18n="future.i2h">Phiên bản di động</h3><p data-i18n="future.i2">Phiên bản di động giúp người nông dân kiểm tra độ chín tại vườn ngay trước khi thu hoạch.</p></div></li>
+        <li><span class="ph-icon sm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 18l6-6 4 4 6-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><h3 data-i18n="future.i3h">Tích hợp trực tiếp tại nhà máy</h3><p data-i18n="future.i3">Kết hợp vào dây chuyền phân loại ở nhà máy để tự động hoá kiểm tra chất lượng quả vải.</p></div></li>
       </ul>
     </section>
 
