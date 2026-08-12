@@ -141,6 +141,17 @@
             <p class="up-sub" data-i18n="up.sub">Chụp hoặc tải ảnh một quả, AI chấm độ chín trong vài giây.</p>
           </div>
 
+          <div class="model-select" id="model-select" role="group" aria-label="Chọn mô hình AI">
+            <button type="button" class="model-opt is-active" data-model="mobilenet_v3_small" aria-pressed="true">
+              <span class="model-opt-name">MobileNetV3</span>
+              <span class="model-opt-tag" data-i18n="model.mobilenet.tag">Nhanh · nhẹ</span>
+            </button>
+            <button type="button" class="model-opt" data-model="resnet50" aria-pressed="false">
+              <span class="model-opt-name">ResNet50</span>
+              <span class="model-opt-tag" data-i18n="model.resnet50.tag">Chính xác hơn</span>
+            </button>
+          </div>
+
           <div class="dz-stack">
             <span class="dz-sheet" aria-hidden="true"></span>
             <button type="button" class="dropzone" id="dropzone">
@@ -193,7 +204,7 @@
             <span class="scan-grid" aria-hidden="true"></span>
           </div>
           <ul class="steps" id="steps">
-            <li data-step="0"><span class="dot"></span><span data-i18n="step0">Đang tải ảnh lên máy chủ…</span></li>
+            <li data-step="0"><span class="dot"></span><span data-i18n="step0">Đang nạp mô hình AI…</span></li>
             <li data-step="1"><span class="dot"></span><span data-i18n="step1">Đang phân tích màu sắc vỏ quả…</span></li>
             <li data-step="2"><span class="dot"></span><span data-i18n="step2">Đang đối chiếu mô hình độ chín…</span></li>
             <li data-step="3"><span class="dot"></span><span data-i18n="step3">Đang tổng hợp kết quả…</span></li>
@@ -242,6 +253,20 @@
                 <span class="prob-value">0%</span>
               </div>
             </div>
+
+            <div class="gradcam">
+              <div class="gradcam-head">
+                <h3 data-i18n="cam.heading">Vì sao AI chọn nhãn này?</h3>
+                <label class="gradcam-switch">
+                  <input type="checkbox" id="cam-switch" checked />
+                  <span data-i18n="cam.switch">Vùng AI chú ý</span>
+                </label>
+              </div>
+              <div class="gradcam-frame">
+                <canvas id="cam-canvas" aria-hidden="true"></canvas>
+              </div>
+              <p class="gradcam-caption" data-i18n="cam.caption">Vùng càng đỏ đậm, AI càng dựa vào đó để chấm điểm. Chạm vào một mức độ chín ở trên để xem AI chú ý gì khi nghĩ tới mức đó.</p>
+            </div>
           </div>
 
           <div class="actions">
@@ -260,7 +285,7 @@
             </span>
             <h2 data-i18n="err.title">Chưa phân tích được</h2>
             <p id="error-message"></p>
-            <p class="error-tip"><span data-i18n="err.tipA">Kiểm tra máy chủ tại</span> <code>http://localhost:8000</code> <span data-i18n="err.tipB">đã chạy và bật CORS chưa nhé.</span></p>
+            <p class="error-tip" data-i18n="err.tip">Mô hình AI cần tải về lần đầu qua Internet, sau đó chạy ngay trên máy bạn. Kiểm tra kết nối mạng rồi thử lại nhé.</p>
           </div>
           <div class="actions">
             <button type="button" class="btn btn-primary" id="btn-retry"><span data-i18n="btn.retry">Thử lại</span></button>
@@ -372,6 +397,7 @@
 
   <div class="toast" id="toast" role="status"></div>
 
+  <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.20.1/dist/ort.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

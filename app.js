@@ -53,7 +53,10 @@ const I18N = {
     "btn.retry": "Thử lại",
     "btn.back": "Thử ảnh khác",
 
-    "step0": "Đang tải ảnh lên máy chủ…",
+    "model.mobilenet.tag": "Nhanh · nhẹ",
+    "model.resnet50.tag": "Chính xác hơn",
+
+    "step0": "Đang nạp mô hình AI…",
     "step1": "Đang phân tích màu sắc vỏ quả…",
     "step2": "Đang đối chiếu mô hình độ chín…",
     "step3": "Đang tổng hợp kết quả…",
@@ -65,9 +68,12 @@ const I18N = {
     "lvl.chin_toi": "Chín tới",
     "lvl.chin_ky": "Chín kỹ",
 
+    "cam.heading": "Vì sao AI chọn nhãn này?",
+    "cam.switch": "Vùng AI chú ý",
+    "cam.caption": "Vùng càng đỏ đậm, AI càng dựa vào đó để chấm điểm. Chạm vào một mức độ chín ở trên để xem AI chú ý gì khi nghĩ tới mức đó.",
+
     "err.title": "Chưa phân tích được",
-    "err.tipA": "Kiểm tra máy chủ tại",
-    "err.tipB": "đã chạy và bật CORS chưa nhé.",
+    "err.tip": "Mô hình AI cần tải về lần đầu qua Internet, sau đó chạy ngay trên máy bạn. Kiểm tra kết nối mạng rồi thử lại nhé.",
 
     "sig.heading": "Ý nghĩa của đề tài",
     "sig.lede": "Ý nghĩa khoa học và thực tiễn của việc dùng CNN để phân loại độ chín quả vải.",
@@ -113,10 +119,9 @@ const I18N = {
     "toast.notimage": "File đã chọn không phải ảnh. Hãy chọn ảnh JPG, PNG hoặc WEBP nhé.",
     "toast.toobig": "Ảnh vượt quá giới hạn, hãy chọn ảnh nhẹ hơn.",
     "toast.empty": "Chưa chọn ảnh. Hãy chọn một ảnh quả vải trước nhé.",
-    "err.conn": "Không kết nối được tới máy chủ phân tích.",
-    "err.http": (c) => `Máy chủ trả về lỗi (HTTP ${c}).`,
-    "err.timeout": "Máy chủ phản hồi quá chậm, vui lòng thử lại.",
-    "err.fmt": "Phản hồi từ máy chủ không đúng định dạng.",
+    "err.conn": "Không tải được mô hình AI. Kiểm tra kết nối mạng rồi thử lại.",
+    "err.timeout": "Mô hình xử lý quá lâu, vui lòng thử lại.",
+    "err.fmt": "Không đọc được ảnh này, thử ảnh khác nhé.",
     "err.generic": "Đã có lỗi xảy ra.",
   },
   en: {
@@ -164,7 +169,10 @@ const I18N = {
     "btn.retry": "Retry",
     "btn.back": "Try another photo",
 
-    "step0": "Uploading image…",
+    "model.mobilenet.tag": "Fast · light",
+    "model.resnet50.tag": "More accurate",
+
+    "step0": "Loading the AI model…",
     "step1": "Analyzing skin color…",
     "step2": "Matching ripeness model…",
     "step3": "Compiling result…",
@@ -176,9 +184,12 @@ const I18N = {
     "lvl.chin_toi": "Ripe",
     "lvl.chin_ky": "Overripe",
 
+    "cam.heading": "Why this label?",
+    "cam.switch": "AI attention area",
+    "cam.caption": "Deeper red means the AI relied more on that area to score ripeness. Tap a level above to see what the AI focuses on for that level.",
+
     "err.title": "Analysis failed",
-    "err.tipA": "Make sure the server at",
-    "err.tipB": "is running and CORS is enabled.",
+    "err.tip": "The AI model needs to download once over the Internet, then it runs right on your device. Check your connection and try again.",
 
     "sig.heading": "Significance of the research",
     "sig.lede": "The scientific and practical significance of using a CNN to grade lychee ripeness.",
@@ -224,10 +235,9 @@ const I18N = {
     "toast.notimage": "That file is not an image. Please pick a JPG, PNG or WEBP.",
     "toast.toobig": "The image is too large, please pick a lighter one.",
     "toast.empty": "No photo selected. Pick a lychee photo first.",
-    "err.conn": "Cannot reach the analysis server.",
-    "err.http": (c) => `The server returned an error (HTTP ${c}).`,
-    "err.timeout": "The server is too slow, please try again.",
-    "err.fmt": "The server response is invalid.",
+    "err.conn": "Could not download the AI model. Check your connection and try again.",
+    "err.timeout": "The model took too long, please try again.",
+    "err.fmt": "Could not read this image, please try another one.",
     "err.generic": "Something went wrong.",
   },
 };
@@ -272,6 +282,8 @@ const els = {
     result: $("state-result"),
     error: $("state-error"),
   },
+  modelSelect: $("model-select"),
+  modelOpts: Array.from(document.querySelectorAll(".model-opt")),
   dropzone: $("dropzone"),
   fileInput: $("file-input"),
   previewImg: $("preview-img"),
@@ -289,6 +301,8 @@ const els = {
   ringFg: $("ring-fg"),
   confValue: $("confidence-value"),
   probRows: Array.from(document.querySelectorAll(".prob-row")),
+  camCanvas: $("cam-canvas"),
+  camSwitch: $("cam-switch"),
   btnReset: $("btn-reset"),
   errorMessage: $("error-message"),
   btnRetry: $("btn-retry"),
@@ -299,14 +313,206 @@ const els = {
 
 const RING_LEN = 2 * Math.PI * 52;
 const CONFIG = {
-  API_URL: "http://localhost:8000/predict",
-  FIELD_NAME: "file",
   MIN_LOADING_MS: 3000,
   MIN_ERROR_MS: 1200,
   TIMEOUT_MS: 30000,
   MAX_SIZE_MB: 10,
   STEP_MS: 800,
 };
+
+/* ============================================================
+   Suy luận AI ngay trong trình duyệt (ONNX Runtime Web) — không cần server.
+   Model xuất từ Docs/outputs/03_cnn/<arch>_none/fold0.pt, xem export_onnx.py.
+   ============================================================ */
+const MODEL_DEFS = {
+  mobilenet_v3_small: { url: "models/mobilenet_v3_small.onnx", camUrl: "models/mobilenet_v3_small_cam.json" },
+  resnet50: { url: "models/resnet50.onnx", camUrl: "models/resnet50_cam.json" },
+};
+const MODEL_META = {
+  imgSize: 224,
+  mean: [0.485, 0.456, 0.406],
+  std: [0.229, 0.224, 0.225],
+  brixMu: 16.309117647058823,
+  brixSd: 1.8437985355957314,
+  stageKeys: ["chua_chin", "chin_toi", "chin_ky"],
+};
+let selectedModel = "mobilenet_v3_small";
+const sessionCache = {};
+const camMetaCache = {};
+
+if (window.ort) {
+  // WASM đơn luồng: chạy được trên host tĩnh bình thường, không cần header COOP/COEP.
+  ort.env.wasm.numThreads = 1;
+}
+
+function withTimeout(promise, ms) {
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => reject(new Error("TIMEOUT")), ms);
+    promise.then((v) => { clearTimeout(timer); resolve(v); }, (e) => { clearTimeout(timer); reject(e); });
+  });
+}
+
+async function getSession(modelKey) {
+  if (sessionCache[modelKey]) return sessionCache[modelKey];
+  if (!window.ort) throw new Error("CONN");
+  try {
+    const session = await withTimeout(
+      ort.InferenceSession.create(MODEL_DEFS[modelKey].url, { executionProviders: ["wasm"] }),
+      CONFIG.TIMEOUT_MS
+    );
+    sessionCache[modelKey] = session;
+    return session;
+  } catch (err) {
+    if (err.message === "TIMEOUT") throw err;
+    throw new Error("CONN");
+  }
+}
+
+async function getCamMeta(modelKey) {
+  if (camMetaCache[modelKey]) return camMetaCache[modelKey];
+  try {
+    const res = await withTimeout(fetch(MODEL_DEFS[modelKey].camUrl), CONFIG.TIMEOUT_MS);
+    if (!res.ok) throw new Error("CONN");
+    const meta = await res.json();
+    camMetaCache[modelKey] = meta;
+    return meta;
+  } catch (err) {
+    if (err.message === "TIMEOUT") throw err;
+    throw new Error("CONN");
+  }
+}
+
+function imageToTensor(imgEl) {
+  const size = MODEL_META.imgSize;
+  const canvas = document.createElement("canvas");
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext("2d");
+  ctx.drawImage(imgEl, 0, 0, size, size);
+  const { data } = ctx.getImageData(0, 0, size, size);
+  const plane = size * size;
+  const chw = new Float32Array(3 * plane);
+  const [rMean, gMean, bMean] = MODEL_META.mean;
+  const [rStd, gStd, bStd] = MODEL_META.std;
+  for (let i = 0; i < plane; i++) {
+    chw[i] = (data[i * 4] / 255 - rMean) / rStd;
+    chw[plane + i] = (data[i * 4 + 1] / 255 - gMean) / gStd;
+    chw[plane * 2 + i] = (data[i * 4 + 2] / 255 - bMean) / bStd;
+  }
+  return new ort.Tensor("float32", chw, [1, 3, size, size]);
+}
+
+function softmax(logits) {
+  const max = Math.max(...logits);
+  const exps = Array.from(logits, (v) => Math.exp(v - max));
+  const sum = exps.reduce((a, b) => a + b, 0);
+  return exps.map((v) => v / sum);
+}
+
+async function runInference(imageUrl, modelKey) {
+  const [session, camMeta] = await Promise.all([getSession(modelKey), getCamMeta(modelKey)]);
+  const img = new Image();
+  img.src = imageUrl;
+  try {
+    await img.decode();
+  } catch {
+    throw new Error("FMT");
+  }
+  const tensor = imageToTensor(img);
+  const out = await withTimeout(session.run({ input: tensor }), CONFIG.TIMEOUT_MS);
+  const probsArr = softmax(out.cls_logits.data);
+  const brixPred = out.brix_reg.data[0] * MODEL_META.brixSd + MODEL_META.brixMu;
+
+  let bestIdx = 0;
+  for (let i = 1; i < probsArr.length; i++) if (probsArr[i] > probsArr[bestIdx]) bestIdx = i;
+  const label = MODEL_META.stageKeys[bestIdx];
+  const probs = {};
+  MODEL_META.stageKeys.forEach((k, i) => { probs[k] = probsArr[i]; });
+
+  const result = normalizeResult({ label, confidence: probsArr[bestIdx], probs, brix_pred: brixPred });
+  result.imgEl = img;
+  result.cam = { feat: out.feat_map.data, weight: camMeta.weight, channels: camMeta.channels, grid: camMeta.grid };
+  return result;
+}
+
+/* ============================================================
+   Grad-CAM (= CAM chính xác cho head GAP+Linear, xem export_onnx.py)
+   ============================================================ */
+function computeCam(cam, classIdx) {
+  const { feat, weight, channels, grid } = cam;
+  const w = weight[classIdx];
+  const plane = grid * grid;
+  const heat = new Float32Array(plane);
+  let max = 0;
+  for (let p = 0; p < plane; p++) {
+    let sum = 0;
+    for (let c = 0; c < channels; c++) sum += w[c] * feat[c * plane + p];
+    const v = Math.max(0, sum);
+    heat[p] = v;
+    if (v > max) max = v;
+  }
+  if (max > 0) for (let p = 0; p < plane; p++) heat[p] /= max;
+  return heat;
+}
+
+function heatColor(v) {
+  if (v <= 0.02) return [0, 0, 0, 0];
+  const lerp = (a, b, t) => a + (b - a) * t;
+  let r, g, b;
+  if (v < 0.5) {
+    const t = v / 0.5;
+    r = lerp(255, 230, t); g = lerp(241, 120, t); b = lerp(150, 40, t);
+  } else {
+    const t = (v - 0.5) / 0.5;
+    r = lerp(230, 196, t); g = lerp(120, 32, t); b = lerp(40, 58, t);
+  }
+  const a = Math.round(40 + v * 170);
+  return [Math.round(r), Math.round(g), Math.round(b), a];
+}
+
+function drawCam(canvas, imgEl, heat, grid, showHeat) {
+  const iw = imgEl.naturalWidth || 1, ih = imgEl.naturalHeight || 1;
+  const cap = 640;
+  const scale = Math.min(cap / iw, cap / ih, 1) || 1;
+  const w = Math.max(1, Math.round(iw * scale));
+  const h = Math.max(1, Math.round(ih * scale));
+  canvas.width = w;
+  canvas.height = h;
+  const ctx = canvas.getContext("2d");
+  ctx.clearRect(0, 0, w, h);
+  ctx.drawImage(imgEl, 0, 0, w, h);
+  if (!showHeat) return;
+
+  const small = document.createElement("canvas");
+  small.width = grid;
+  small.height = grid;
+  const sctx = small.getContext("2d");
+  const imgData = sctx.createImageData(grid, grid);
+  for (let p = 0; p < grid * grid; p++) {
+    const [r, g, b, a] = heatColor(heat[p]);
+    imgData.data[p * 4] = r; imgData.data[p * 4 + 1] = g; imgData.data[p * 4 + 2] = b; imgData.data[p * 4 + 3] = a;
+  }
+  sctx.putImageData(imgData, 0, 0);
+  ctx.imageSmoothingEnabled = true;
+  ctx.drawImage(small, 0, 0, w, h);
+}
+
+let camState = null; // { result, classKey }
+
+function renderCam() {
+  if (!camState) return;
+  const { result, classKey } = camState;
+  const classIdx = MODEL_META.stageKeys.indexOf(classKey);
+  const heat = computeCam(result.cam, classIdx);
+  drawCam(els.camCanvas, result.imgEl, heat, result.cam.grid, els.camSwitch.checked);
+}
+
+function setupCam(result) {
+  camState = { result, classKey: result.label };
+  els.camSwitch.checked = true;
+  els.probRows.forEach((row) => row.classList.toggle("is-cam-active", row.dataset.key === result.label));
+  renderCam();
+}
 
 /* ============================================================
    i18n
@@ -431,42 +637,23 @@ function startSteps() {
 function finishSteps() { stopSteps(); els.steps.forEach((li) => { li.classList.remove("is-active"); li.classList.add("is-done"); }); }
 function stopSteps() { if (stepTimer) { clearInterval(stepTimer); stepTimer = null; } }
 
-async function predict(file) {
-  const form = new FormData();
-  form.append(CONFIG.FIELD_NAME, file);
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), CONFIG.TIMEOUT_MS);
-  try {
-    const res = await fetch(CONFIG.API_URL, { method: "POST", body: form, signal: controller.signal });
-    if (!res.ok) throw new Error("HTTP:" + res.status);
-    const data = await res.json();
-    return normalizeResult(data);
-  } catch (err) {
-    if (err.name === "AbortError") throw new Error("TIMEOUT");
-    if (err instanceof TypeError) throw new Error("CONN");
-    throw err;
-  } finally { clearTimeout(timeout); }
-}
-
 function normalizeResult(data) {
   if (!data || typeof data !== "object" || !LEVELS[data.label]) throw new Error("FMT");
   const level = LEVELS[data.label];
-  const langDisplay = level[lang] ? level[lang].display : level.vi.display;
   const confidence = Math.min(1, Math.max(0, Number(data.confidence) || 0));
   const probs = {};
   for (const key of Object.keys(LEVELS)) {
     const p = data.probs && Number(data.probs[key]);
     probs[key] = Number.isFinite(p) ? Math.min(1, Math.max(0, p)) : 0;
   }
-  // Ưu tiên label_display tiếng Việt từ API nếu đang ở VI, ngược lại dùng display theo ngữ
-  const useApiDisplay = lang === "vi" && typeof data.label_display === "string" && data.label_display.trim();
   return {
     label: data.label,
-    display: useApiDisplay ? data.label_display.trim() : langDisplay,
+    display: level[lang] ? level[lang].display : level.vi.display,
     confidence,
     probs,
     hint: level[lang] ? level[lang].hint : level.vi.hint,
     icon: level.icon,
+    brixPred: Number.isFinite(data.brix_pred) ? data.brix_pred : null,
   };
 }
 
@@ -479,7 +666,7 @@ async function analyze() {
   startSteps();
   const startedAt = Date.now();
   try {
-    const result = await predict(selectedFile);
+    const result = await runInference(objectUrl, selectedModel);
     await waitUntil(startedAt, CONFIG.MIN_LOADING_MS);
     finishSteps();
     setProdState("result");
@@ -488,12 +675,10 @@ async function analyze() {
   } catch (err) {
     await waitUntil(startedAt, CONFIG.MIN_ERROR_MS);
     stopSteps();
-    const code = /HTTP:(\d+)/.exec(err.message || "");
     let key = "err.generic";
     if (err.message === "CONN") key = "err.conn";
     else if (err.message === "TIMEOUT") key = "err.timeout";
     else if (err.message === "FMT") key = "err.fmt";
-    else if (code) { els.errorMessage.textContent = I18N[lang]["err.http"](code[1]); setProdState("error"); analyzing = false; els.btnAnalyze.disabled = false; return; }
     els.errorMessage.textContent = t(key);
     setProdState("error");
   } finally {
@@ -516,6 +701,7 @@ function renderResult(result, langOnly) {
 
   if (langOnly) return; // đổi ngữ giữa chừng: chỉ cập nhật text, giữ ring/bar nguyên
 
+  setupCam(result);
   clearTimeout(resultTimer);
   els.ringFg.style.transition = "none";
   els.ringFg.style.strokeDashoffset = RING_LEN;
@@ -556,6 +742,7 @@ function animateCounter(el, target, duration, decimals, suffix = "") {
 function resetAll() {
   selectedFile = null;
   lastResult = null;
+  camState = null;
   clearTimeout(resultTimer);
   if (objectUrl) { URL.revokeObjectURL(objectUrl); objectUrl = null; }
   els.fileInput.value = "";
@@ -586,6 +773,18 @@ els.langToggle.querySelectorAll("button").forEach((b) => {
   b.addEventListener("click", () => applyLang(b.dataset.lang));
 });
 
+// chọn model AI
+els.modelOpts.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    selectedModel = btn.dataset.model;
+    els.modelOpts.forEach((b) => {
+      const active = b === btn;
+      b.classList.toggle("is-active", active);
+      b.setAttribute("aria-pressed", String(active));
+    });
+  });
+});
+
 // product tool
 els.dropzone.addEventListener("click", () => els.fileInput.click());
 els.fileInput.addEventListener("change", (e) => handleFile(e.target.files[0]));
@@ -597,6 +796,17 @@ els.btnRepick.addEventListener("click", resetAll);
 els.btnReset.addEventListener("click", resetAll);
 els.btnBack.addEventListener("click", resetAll);
 els.btnRetry.addEventListener("click", () => { if (selectedFile) analyze(); else resetAll(); });
+
+// Grad-CAM: chọn mức để xem AI chú ý gì, bật/tắt lớp phủ
+els.probRows.forEach((row) => {
+  row.addEventListener("click", () => {
+    if (!camState) return;
+    camState.classKey = row.dataset.key;
+    els.probRows.forEach((r) => r.classList.toggle("is-cam-active", r === row));
+    renderCam();
+  });
+});
+els.camSwitch.addEventListener("change", renderCam);
 
 /* ============================================================
    Init
