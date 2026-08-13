@@ -425,6 +425,7 @@ body::after {
 .member-card { background: rgba(255,255,255,0.7); border: 1px solid var(--line); border-radius: var(--radius-panel); padding: 24px; text-align: center; }
 .avatar { display: inline-grid; place-items: center; width: 72px; height: 72px; border-radius: 50%; color: var(--lychee-red); background: linear-gradient(150deg, #ffe3ea, #ffd0db); margin-bottom: 14px; }
 .avatar svg { width: 36px; height: 36px; }
+.avatar img { width: 72px; height: 72px; object-fit: cover; border-radius: 50%; }
 .member-card p { color: var(--ink-soft); }
 .member-role { display: inline-block; font-size: 0.82rem; font-weight: 700; color: var(--lychee-red-deep); background: #fde6eb; padding: 4px 12px; border-radius: 999px; margin: 0 0 8px; }
 .member-aff { font-size: 0.82rem; font-weight: 500; color: var(--ink-soft); margin: 0; line-height: 1.4; }
