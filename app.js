@@ -11,6 +11,7 @@ const I18N = {
   vi: {
     "nav.home": "Trang chủ",
     "nav.product": "Sản phẩm",
+    "nav.method": "Phương pháp",
     "nav.significance": "Ý nghĩa",
     "nav.timeline": "Timeline",
     "nav.future": "Ý tưởng",
@@ -37,6 +38,26 @@ const I18N = {
     "product.kicker": "Sản phẩm",
     "product.heading": "LycheeScan, công cụ chấm độ chín",
     "product.sub": "Tải ảnh một quả vải lên, để mô hình đo độ chín thuộc một trong ba mức lớn.",
+
+    "method.kicker": "Phương pháp nghiên cứu",
+    "method.heading": "Phương pháp nghiên cứu",
+    "method.lede": "Vật liệu, thiết bị và quy trình thu thập – tiền xử lý dữ liệu dùng để huấn luyện mô hình CNN.",
+    "method.m1h": "Vật liệu nghiên cứu",
+    "method.m1": "Đối tượng nghiên cứu là quả vải thiều: vỏ ngoài màu đỏ với kết cấu sần gai đặc trưng, thay đổi rõ theo giai đoạn chín; thịt quả màu trắng trong, vị chua/ngọt thay đổi theo độ chín (đo bằng độ Brix); hạt màu nâu đen, kích thước thay đổi tùy giống và độ chín. Mẫu được thu thập ở 3 giai đoạn chín khác nhau.",
+    "method.m2h": "Thiết kế Lightbox",
+    "method.m2": "Hộp kích thước 30×20×20 cm, khung vỏ bằng tấm fomex ghép kín sáng. Chiếu sáng bằng dải đèn LED với nguồn adapter 15VDC – 2A có công tắc bật/tắt, bố trí quanh 4 cạnh trên đỉnh hộp và cùng hướng camera để tránh bóng đổ, giảm chói. Trên đỉnh hộp có ô cắt kích thước 4×4 cm để đặt camera; tâm hộp đặt 1 nắp chai nhựa để cố định vị trí quả và hạn chế bóng đổ.",
+    "method.procH": "Quy trình thu thập dữ liệu",
+    "method.s1h": "Chụp ảnh trong lightbox", "method.s1": "Mỗi quả chụp 4 góc: trên, dưới, trái, phải.",
+    "method.s2h": "Bóc vỏ, tách hạt & quả", "method.s2": "Tách riêng phần thịt quả để lấy dịch.",
+    "method.s3h": "Đo độ Brix", "method.s3": "Đổ dịch quả lên khúc xạ kế, đo 3 lần mỗi quả.",
+    "method.s4h": "Đo độ pH", "method.s4": "Ghi nhận chỉ số pH của dịch quả.",
+    "method.note": "Kết quả: mỗi mẫu vải có bộ ảnh 4 góc, độ Brix trung bình (3 lần đo) và độ pH — sẵn sàng cho bước tiền xử lý dữ liệu.",
+    "method.m3h": "Tiền xử lý dữ liệu",
+    "method.m3": "Cắt ảnh (crop) tập trung vào quả vải, loại bỏ nền thừa; resize về tỷ lệ 1:1; chuẩn hóa dữ liệu đầu vào và gán nhãn theo độ chín.",
+    "method.m4h": "Huấn luyện mô hình",
+    "method.m4": "Nhóm cơ bản dùng Teachable Machine (no-code). Nhóm nâng cao dùng Python – TensorFlow/PyTorch, áp dụng học chuyển giao (transfer learning) với các kiến trúc MobileNet, VGG16, YOLO.",
+    "method.statNum": "1.460",
+    "method.statCap": "Tổng số ảnh (4 góc mỗi quả)",
 
     "up.titleA": "Quả vải của bạn",
     "up.titleB": "đã chín chưa?",
@@ -84,6 +105,19 @@ const I18N = {
     "sig.p3h": "Tiềm năng và hạn chế",
     "sig.p3": "Phương pháp dựa trên hình ảnh chủ yếu cung cấp thông tin bề mặt, nên khó phát hiện hư hỏng bên trong quả. Đây là cơ sở để xem xét kết hợp thêm các cảm biến khác trong những nghiên cứu tiếp theo.",
 
+    "sig.ctxH": "Bối cảnh & động lực đề tài",
+    "sig.ctxStatNum": "14%",
+    "sig.ctxStatCap": "lương thực toàn cầu bị thất thoát từ sau thu hoạch đến trước khâu bán lẻ — trái cây & rau củ chiếm tỷ lệ cao hơn mức trung bình này.",
+    "sig.ctxSrc1": "Nguồn: FAO, Báo cáo SOFA 2019",
+    "sig.ctxB1h": "Cơ hội xuất khẩu",
+    "sig.ctxB1": "Vải thiều Việt Nam (các vùng trọng điểm như Lục Ngạn, Thanh Hà) ngày càng được xuất khẩu sang các thị trường khó tính: Nhật Bản, Mỹ, EU, Úc — mở ra cơ hội nâng cao giá trị nông sản Việt.",
+    "sig.ctxSrc2": "Nguồn: VietnamPlus",
+    "sig.ctxB2h": "Tiêu chuẩn khắt khe của thị trường xuất khẩu",
+    "sig.ctxB2": "Nhật Bản yêu cầu vải đạt trên 18 độ Brix và khoảng 25–30 quả/kg; tiêu chuẩn Bắc Giang yêu cầu tổng chất khô hòa tan trong dịch quả không dưới 17%.",
+    "sig.ctxSrc3": "Nguồn: Cổng TTĐT tỉnh Bắc Giang; TraceVerified, 2022",
+    "sig.ctxB3h": "Hạn chế của phương pháp cảm quan truyền thống",
+    "sig.ctxB3": "Nhìn màu vỏ, nếm thử… thiếu nhất quán, phụ thuộc kinh nghiệm và tốn nhiều nhân lực. Hái non khiến vải chua, không đạt chuẩn Brix; hái quá muộn khiến quả dễ hư hỏng, nứt vỏ trong quá trình vận chuyển.",
+
     "tl.heading": "Timeline dự án",
     "tl.lede": "Các mốc chính trong quá trình xây dựng và đánh giá mô hình LycheeScan.",
     "tl.m1": "Khởi tạo ý tưởng", "tl.m1d": "Xác định đề tài và mục tiêu nghiên cứu, phạm vi ứng dụng CNN cho bài toán phân loại độ chín quả vải.",
@@ -91,9 +125,11 @@ const I18N = {
     "tl.m3": "Huấn luyện mô hình", "tl.m3d": "Xây dựng và huấn luyện mô hình CNN trên bộ dữ liệu đã gán nhãn, kiểm tra trên hình ảnh mới và đánh giá bằng Accuracy, Precision, Recall, F1-Score.",
     "tl.m4": "Xây dựng giao diện", "tl.m4d": "Phát triển giao diện LycheeScan để người dùng tải ảnh và xem kết quả phân tích độ chín.",
     "tl.m5": "Triển lãm NCKH", "tl.m5d": "Trình bày kết quả thực nghiệm, đánh giá khả năng ứng dụng thực tế và đề xuất hướng phát triển tiếp.",
+    "tl.d1": "Đang cập nhật", "tl.d2": "Đang cập nhật", "tl.d3": "Đang cập nhật", "tl.d4": "Đang cập nhật", "tl.d5": "Đang cập nhật",
 
-    "future.heading": "Ý tưởng phát triển",
-    "future.lede": "Hướng phát triển tiếp theo nhằm mở rộng khả năng ứng dụng của mô hình.",
+    "future.heading": "Hướng phát triển tiềm năng",
+    "future.lede": "Những hướng tiềm năng nếu đề tài được mở rộng trong tương lai.",
+    "future.scope": "Trong khuôn khổ đề tài nghiên cứu khoa học kỹ thuật hiện tại, nhóm xác định dự án đã hoàn chỉnh và chưa có kế hoạch triển khai mở rộng thêm ở giai đoạn tiếp theo. Kết quả và quy trình thực hiện được dùng làm minh chứng năng lực nghiên cứu khoa học kỹ thuật, bổ sung vào hồ sơ năng lực (portfolio) học tập của các thành viên trong nhóm. Các gợi ý dưới đây là những hướng phát triển tiềm năng nếu đề tài được mở rộng trong tương lai, hiện không thuộc phạm vi triển khai của dự án.",
     "future.i1h": "Mở rộng loại trái cây", "future.i1": "Áp dụng phương pháp cho các loại trái cây khác có sự thay đổi màu sắc và đặc điểm vỏ theo độ chín.",
     "future.i2h": "Phiên bản di động", "future.i2": "Phiên bản di động giúp người nông dân kiểm tra độ chín tại vườn ngay trước khi thu hoạch.",
     "future.i3h": "Tích hợp trực tiếp tại nhà máy", "future.i3": "Kết hợp vào dây chuyền phân loại ở nhà máy để tự động hoá kiểm tra chất lượng quả vải.",
@@ -127,6 +163,7 @@ const I18N = {
   en: {
     "nav.home": "Home",
     "nav.product": "Product",
+    "nav.method": "Method",
     "nav.significance": "Impact",
     "nav.timeline": "Timeline",
     "nav.future": "Ideas",
@@ -153,6 +190,26 @@ const I18N = {
     "product.kicker": "Product",
     "product.heading": "LycheeScan, a ripeness grader",
     "product.sub": "Upload a photo of one lychee and the model grades its ripeness into one of three broad levels.",
+
+    "method.kicker": "Research method",
+    "method.heading": "Research method",
+    "method.lede": "The materials, equipment and data collection & preprocessing pipeline used to train the CNN model.",
+    "method.m1h": "Research material",
+    "method.m1": "The study focuses on thieu lychees: a red rind with a characteristic bumpy texture that changes visibly across ripeness stages; translucent white flesh whose sweet–sour taste shifts with ripeness (measured in °Brix); and a dark brown seed whose size varies by variety and ripeness. Samples were collected at three different ripeness stages.",
+    "method.m2h": "Lightbox design",
+    "method.m2": "A 30×20×20 cm box with a light-tight fomex frame. LED strips powered by a 15 VDC – 2 A adapter with an on/off switch run around the four edges of the top lid, aimed the same way as the camera to avoid shadows and reduce glare. A 4×4 cm cutout on the lid holds the camera, and a plastic bottle cap at the center fixes the fruit position and limits shadows.",
+    "method.procH": "Data collection workflow",
+    "method.s1h": "Photograph inside the lightbox", "method.s1": "Each fruit is shot from 4 angles: top, bottom, left, right.",
+    "method.s2h": "Peel and separate seed & flesh", "method.s2": "Separate the flesh to extract the juice.",
+    "method.s3h": "Measure Brix", "method.s3": "Drop the juice onto a refractometer and measure 3 times per fruit.",
+    "method.s4h": "Measure pH", "method.s4": "Record the pH value of the juice.",
+    "method.note": "Outcome: each lychee sample has a 4-angle photo set, an average Brix reading (3 measurements) and a pH value — ready for preprocessing.",
+    "method.m3h": "Data preprocessing",
+    "method.m3": "Crop each image to focus on the lychee and remove excess background; resize to a 1:1 scale; normalize the inputs and label them by ripeness.",
+    "method.m4h": "Model training",
+    "method.m4": "The basic group uses Teachable Machine (no-code). The advanced group uses Python with TensorFlow/PyTorch, applying transfer learning with MobileNet, VGG16 and YOLO architectures.",
+    "method.statNum": "1,460",
+    "method.statCap": "Total images (4 angles per fruit)",
 
     "up.titleA": "Is your lychee",
     "up.titleB": "ripe yet?",
@@ -200,6 +257,19 @@ const I18N = {
     "sig.p3h": "Potential and limitations",
     "sig.p3": "Image-based methods mainly capture surface features, so internal defects are hard to detect. This opens the way to combining images with other sensors in future research.",
 
+    "sig.ctxH": "Context & motivation",
+    "sig.ctxStatNum": "14%",
+    "sig.ctxStatCap": "of global food is lost between harvest and retail — fruits and vegetables lose even more than this average.",
+    "sig.ctxSrc1": "Source: FAO, SOFA Report 2019",
+    "sig.ctxB1h": "Export opportunity",
+    "sig.ctxB1": "Vietnamese lychees from key regions such as Luc Ngan and Thanh Ha are increasingly exported to demanding markets — Japan, the US, the EU and Australia — opening chances to raise the value of Vietnamese produce.",
+    "sig.ctxSrc2": "Source: VietnamPlus",
+    "sig.ctxB2h": "Strict export standards",
+    "sig.ctxB2": "Japan requires lychees above 18 °Brix at roughly 25–30 fruits per kilogram; Bac Giang's standard requires total soluble solids in the juice to be no less than 17%.",
+    "sig.ctxSrc3": "Source: Bac Giang provincial portal; TraceVerified, 2022",
+    "sig.ctxB3h": "Limits of traditional sensory checks",
+    "sig.ctxB3": "Checking skin color and tasting are inconsistent, experience-dependent and labor-intensive. Harvesting too early leaves lychees sour and below Brix standards; harvesting too late leads to spoilage and skin cracking in transit.",
+
     "tl.heading": "Project timeline",
     "tl.lede": "Key milestones in building and evaluating the LycheeScan model.",
     "tl.m1": "Idea kickoff", "tl.m1d": "Define the topic and research goals, and scope the use of CNN for lychee ripeness classification.",
@@ -207,9 +277,11 @@ const I18N = {
     "tl.m3": "Model training", "tl.m3d": "Build and train the CNN model on the labeled dataset, test on new images and evaluate with Accuracy, Precision, Recall, F1-Score.",
     "tl.m4": "Interface build", "tl.m4d": "Develop the LycheeScan interface so users can upload a photo and view the ripeness result.",
     "tl.m5": "Research fair", "tl.m5d": "Present experimental results, evaluate real-world applicability and propose directions for future work.",
+    "tl.d1": "Coming soon", "tl.d2": "Coming soon", "tl.d3": "Coming soon", "tl.d4": "Coming soon", "tl.d5": "Coming soon",
 
-    "future.heading": "Future ideas",
-    "future.lede": "Where the model goes next to broaden its real-world use.",
+    "future.heading": "Potential future directions",
+    "future.lede": "Potential directions should the project be expanded in the future.",
+    "future.scope": "Within the scope of the current technical research project, the team considers the project complete and has no plans to extend it in the next phase. The results and workflow serve as evidence of technical research capability and are added to the members' learning portfolios. The suggestions below are potential directions should the project be expanded in the future; they are not part of the project's current scope.",
     "future.i1h": "More fruit types", "future.i1": "Extend the approach to other fruits whose color and skin features change with ripeness.",
     "future.i2h": "Mobile version", "future.i2": "A mobile version lets farmers check ripeness in the orchard right before harvest.",
     "future.i3h": "On-site factory integration", "future.i3": "Integrate into the factory sorting line to automate lychee quality control.",
@@ -273,6 +345,7 @@ const els = {
   navMenu: $("nav-menu"),
   navToggle: $("nav-toggle"),
   langToggle: $("lang-toggle"),
+  themeToggle: $("theme-toggle"),
 
   // product
   states: {
@@ -545,12 +618,43 @@ function setAlts() {
   if (els.scanImg) els.scanImg.alt = lang === "vi" ? "Ảnh đang được phân tích" : "Photo being analyzed";
   if (els.resultImg) els.resultImg.alt = lang === "vi" ? "Ảnh quả vải đã phân tích" : "Analyzed lychee photo";
   if (els.navToggle) els.navToggle.setAttribute("aria-label", lang === "vi" ? "Mở menu" : "Open menu");
+  if (els.themeToggle) {
+    const dark = currentTheme() === "dark";
+    els.themeToggle.setAttribute("aria-label", lang === "vi"
+      ? (dark ? "Chuyển sang chế độ sáng" : "Chuyển sang chế độ tối")
+      : (dark ? "Switch to light mode" : "Switch to dark mode"));
+  }
+}
+
+/* ============================================================
+   Theme sáng/tối (theme khởi tạo sớm bằng inline script trong <head>)
+   ============================================================ */
+const themeMedia = window.matchMedia("(prefers-color-scheme: dark)");
+
+function currentTheme() {
+  return document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+}
+
+function syncThemeUI() {
+  els.themeToggle.setAttribute("aria-pressed", String(currentTheme() === "dark"));
+  setAlts();
+}
+
+function applyTheme(next, save = true) {
+  const root = document.documentElement;
+  root.classList.add("theming"); // crossfade ngắn, xoá sau khi xong
+  root.dataset.theme = next;
+  if (save) localStorage.setItem("theme", next);
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.setAttribute("content", next === "dark" ? "#1a1216" : "#e63956");
+  syncThemeUI();
+  setTimeout(() => root.classList.remove("theming"), 420);
 }
 
 /* ============================================================
    Router theo hash
    ============================================================ */
-const VIEWS = ["home", "product", "significance", "timeline", "future", "team", "gallery"];
+const VIEWS = ["home", "product", "method", "significance", "timeline", "future", "team", "gallery"];
 
 function setView(name) {
   if (!VIEWS.includes(name)) name = "home";
@@ -773,6 +877,12 @@ els.langToggle.querySelectorAll("button").forEach((b) => {
   b.addEventListener("click", () => applyLang(b.dataset.lang));
 });
 
+// theme toggle + bám theo hệ điều hành khi người dùng chưa chọn tay
+els.themeToggle.addEventListener("click", () => applyTheme(currentTheme() === "dark" ? "light" : "dark"));
+themeMedia.addEventListener("change", (e) => {
+  if (!localStorage.getItem("theme")) applyTheme(e.matches ? "dark" : "light", false);
+});
+
 // chọn model AI
 els.modelOpts.forEach((btn) => {
   btn.addEventListener("click", () => {
@@ -812,4 +922,5 @@ els.camSwitch.addEventListener("change", renderCam);
    Init
    ============================================================ */
 applyLang(lang);
+syncThemeUI();
 setView(currentViewFromHash());
