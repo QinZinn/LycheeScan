@@ -10,21 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="32" cy="38" r="22" fill="%23e63956"/><ellipse cx="40" cy="16" rx="10" ry="5" fill="%234e9b47" transform="rotate(-24 40 16)"/></svg>' />
-  <script>
-    // Áp theme trước khi paint để tránh nhấp sáng (FOUC). Ưu tiên lựa chọn đã lưu, không thì theo hệ điều hành.
-    (function () {
-      try {
-        var t = localStorage.getItem("theme");
-        if (t !== "dark" && t !== "light") t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-        document.documentElement.dataset.theme = t;
-        if (t === "dark") {
-          var m = document.querySelector('meta[name="theme-color"]');
-          if (m) m.setAttribute("content", "#1a1216");
-        }
-      } catch (e) { document.documentElement.dataset.theme = "light"; }
-    })();
-  </script>
-  <link rel="stylesheet" href="styles.css?v=3" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <!-- Nền: mesh blob lệch góc + grain -->
@@ -57,7 +43,6 @@
       <nav class="nav-menu" id="nav-menu" aria-label="Điều hướng trang">
         <a class="nav-link" href="#home"          data-go="home"          data-i18n="nav.home">Trang chủ</a>
         <a class="nav-link" href="#product"       data-go="product"        data-i18n="nav.product">Sản phẩm</a>
-        <a class="nav-link" href="#method"        data-go="method"         data-i18n="nav.method">Phương pháp</a>
         <a class="nav-link" href="#significance" data-go="significance"   data-i18n="nav.significance">Ý nghĩa</a>
         <a class="nav-link" href="#timeline"     data-go="timeline"      data-i18n="nav.timeline">Timeline</a>
         <a class="nav-link" href="#future"        data-go="future"        data-i18n="nav.future">Ý tưởng</a>
@@ -65,15 +50,9 @@
         <a class="nav-link" href="#gallery"      data-go="gallery"       data-i18n="nav.gallery">Thư viện</a>
       </nav>
 
-      <div class="nav-actions">
-        <div class="lang-toggle" id="lang-toggle" role="group" aria-label="Ngôn ngữ / Language">
-          <button type="button" data-lang="vi" aria-pressed="true">VI</button>
-          <button type="button" data-lang="en" aria-pressed="false">EN</button>
-        </div>
-        <button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false" aria-label="Chuyển sang chế độ tối">
-          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>
-        </button>
+      <div class="lang-toggle" id="lang-toggle" role="group" aria-label="Ngôn ngữ / Language">
+        <button type="button" data-lang="vi" aria-pressed="true">VI</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
       </div>
     </div>
   </header>
@@ -316,90 +295,12 @@
       </div>
     </section>
 
-    <!-- ============ METHOD ============ -->
-    <section class="view" data-view="method">
-      <div class="page-head">
-        <p class="section-kicker" data-i18n="method.kicker">Phương pháp nghiên cứu</p>
-        <h1 class="section-h" data-i18n="method.heading">Phương pháp nghiên cứu</h1>
-        <p class="section-lede" data-i18n="method.lede">Vật liệu, thiết bị và quy trình thu thập – tiền xử lý dữ liệu dùng để huấn luyện mô hình CNN.</p>
-      </div>
-
-      <div class="method-grid">
-        <div class="ph-block">
-          <span class="ph-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="13" r="7" stroke="currentColor" stroke-width="2"/><path d="M12 6c.2-2 1.5-3.3 3.5-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-          <h3 data-i18n="method.m1h">Vật liệu nghiên cứu</h3>
-          <p data-i18n="method.m1">Đối tượng nghiên cứu là quả vải thiều: vỏ ngoài màu đỏ với kết cấu sần gai đặc trưng, thay đổi rõ theo giai đoạn chín; thịt quả màu trắng trong, vị chua/ngọt thay đổi theo độ chín (đo bằng độ Brix); hạt màu nâu đen, kích thước thay đổi tùy giống và độ chín. Mẫu được thu thập ở 3 giai đoạn chín khác nhau.</p>
-        </div>
-        <div class="ph-block">
-          <span class="ph-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="8" width="16" height="12" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 5v1.5M12 4v1.5M16 5v1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="14" r="2.5" stroke="currentColor" stroke-width="2"/></svg></span>
-          <h3 data-i18n="method.m2h">Thiết kế Lightbox</h3>
-          <p data-i18n="method.m2">Hộp kích thước 30×20×20 cm, khung vỏ bằng tấm fomex ghép kín sáng. Chiếu sáng bằng dải đèn LED với nguồn adapter 15VDC – 2A có công tắc bật/tắt, bố trí quanh 4 cạnh trên đỉnh hộp và cùng hướng camera để tránh bóng đổ, giảm chói. Trên đỉnh hộp có ô cắt kích thước 4×4 cm để đặt camera; tâm hộp đặt 1 nắp chai nhựa để cố định vị trí quả và hạn chế bóng đổ.</p>
-        </div>
-      </div>
-
-      <section class="page-section">
-        <h2 class="section-h" data-i18n="method.procH">Quy trình thu thập dữ liệu</h2>
-        <ol class="flow-steps">
-          <li><span class="fs-num" aria-hidden="true">1</span><h3 data-i18n="method.s1h">Chụp ảnh trong lightbox</h3><p data-i18n="method.s1">Mỗi quả chụp 4 góc: trên, dưới, trái, phải.</p></li>
-          <li><span class="fs-num" aria-hidden="true">2</span><h3 data-i18n="method.s2h">Bóc vỏ, tách hạt &amp; quả</h3><p data-i18n="method.s2">Tách riêng phần thịt quả để lấy dịch.</p></li>
-          <li><span class="fs-num" aria-hidden="true">3</span><h3 data-i18n="method.s3h">Đo độ Brix</h3><p data-i18n="method.s3">Đổ dịch quả lên khúc xạ kế, đo 3 lần mỗi quả.</p></li>
-          <li><span class="fs-num" aria-hidden="true">4</span><h3 data-i18n="method.s4h">Đo độ pH</h3><p data-i18n="method.s4">Ghi nhận chỉ số pH của dịch quả.</p></li>
-        </ol>
-        <p class="method-note" data-i18n="method.note">Kết quả: mỗi mẫu vải có bộ ảnh 4 góc, độ Brix trung bình (3 lần đo) và độ pH — sẵn sàng cho bước tiền xử lý dữ liệu.</p>
-      </section>
-
-      <div class="method-grid">
-        <div class="ph-block">
-          <span class="ph-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M6 2v14a2 2 0 0 0 2 2h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M18 22V8a2 2 0 0 0-2-2H2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-          <h3 data-i18n="method.m3h">Tiền xử lý dữ liệu</h3>
-          <p data-i18n="method.m3">Cắt ảnh (crop) tập trung vào quả vải, loại bỏ nền thừa; resize về tỷ lệ 1:1; chuẩn hóa dữ liệu đầu vào và gán nhãn theo độ chín.</p>
-        </div>
-        <div class="ph-block">
-          <span class="ph-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2"/><rect x="9" y="9" width="6" height="6" stroke="currentColor" stroke-width="2"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-          <h3 data-i18n="method.m4h">Huấn luyện mô hình</h3>
-          <p data-i18n="method.m4">Nhóm cơ bản dùng Teachable Machine (no-code). Nhóm nâng cao dùng Python – TensorFlow/PyTorch, áp dụng học chuyển giao (transfer learning) với các kiến trúc MobileNet, VGG16, YOLO.</p>
-        </div>
-      </div>
-
-      <div class="method-stat">
-        <span class="stat-num" data-i18n="method.statNum">1.460</span>
-        <span class="stat-cap" data-i18n="method.statCap">Tổng số ảnh (4 góc mỗi quả)</span>
-      </div>
-    </section>
-
     <!-- ============ SIGNIFICANCE (placeholder) ============ -->
     <section class="view" data-view="significance">
       <div class="page-head">
         <h1 class="section-h" data-i18n="sig.heading">Ý nghĩa của đề tài</h1>
         <p class="section-lede" data-i18n="sig.lede">Ý nghĩa khoa học và thực tiễn của việc dùng CNN để phân loại độ chín quả vải.</p>
       </div>
-      <section class="page-section sig-context">
-        <h2 class="section-h" data-i18n="sig.ctxH">Bối cảnh &amp; động lực đề tài</h2>
-        <div class="ctx-grid">
-          <div class="ctx-stat">
-            <span class="ctx-num" data-i18n="sig.ctxStatNum">14%</span>
-            <span class="ctx-cap" data-i18n="sig.ctxStatCap">lương thực toàn cầu bị thất thoát từ sau thu hoạch đến trước khâu bán lẻ — trái cây &amp; rau củ chiếm tỷ lệ cao hơn mức trung bình này.</span>
-            <span class="ctx-src" data-i18n="sig.ctxSrc1">Nguồn: FAO, Báo cáo SOFA 2019</span>
-          </div>
-          <div class="ph-block">
-            <span class="ph-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M3 12h18M12 3c2.7 2.7 4 5.9 4 9s-1.3 6.3-4 9c-2.7-2.7-4-5.9-4-9s1.3-6.3 4-9z" stroke="currentColor" stroke-width="2"/></svg></span>
-            <h3 data-i18n="sig.ctxB1h">Cơ hội xuất khẩu</h3>
-            <p data-i18n="sig.ctxB1">Vải thiều Việt Nam (các vùng trọng điểm như Lục Ngạn, Thanh Hà) ngày càng được xuất khẩu sang các thị trường khó tính: Nhật Bản, Mỹ, EU, Úc — mở ra cơ hội nâng cao giá trị nông sản Việt.</p>
-            <span class="ctx-src" data-i18n="sig.ctxSrc2">Nguồn: VietnamPlus</span>
-          </div>
-          <div class="ph-block">
-            <span class="ph-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M8.5 12.5l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <h3 data-i18n="sig.ctxB2h">Tiêu chuẩn khắt khe của thị trường xuất khẩu</h3>
-            <p data-i18n="sig.ctxB2">Nhật Bản yêu cầu vải đạt trên 18 độ Brix và khoảng 25–30 quả/kg; tiêu chuẩn Bắc Giang yêu cầu tổng chất khô hòa tan trong dịch quả không dưới 17%.</p>
-            <span class="ctx-src" data-i18n="sig.ctxSrc3">Nguồn: Cổng TTĐT tỉnh Bắc Giang; TraceVerified, 2022</span>
-          </div>
-          <div class="ph-block">
-            <span class="ph-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M2 12s3.5-6.5 10-6.5S22 12 22 12s-3.5 6.5-10 6.5S2 12 2 12z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/></svg></span>
-            <h3 data-i18n="sig.ctxB3h">Hạn chế của phương pháp cảm quan truyền thống</h3>
-            <p data-i18n="sig.ctxB3">Nhìn màu vỏ, nếm thử… thiếu nhất quán, phụ thuộc kinh nghiệm và tốn nhiều nhân lực. Hái non khiến vải chua, không đạt chuẩn Brix; hái quá muộn khiến quả dễ hư hỏng, nứt vỏ trong quá trình vận chuyển.</p>
-          </div>
-        </div>
-      </section>
       <div class="placeholder-layout">
         <div class="ph-block">
           <span class="ph-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4L4.2 8.7l5.4-.8L12 3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
@@ -426,23 +327,19 @@
         <p class="section-lede" data-i18n="tl.lede">Các mốc chính trong quá trình xây dựng và đánh giá mô hình LycheeScan.</p>
       </div>
       <ol class="timeline">
-        <li><span class="t-date" data-i18n="tl.d1">Đang cập nhật</span><div><h3 data-i18n="tl.m1">Khởi tạo ý tưởng</h3><p data-i18n="tl.m1d">Xác định đề tài và mục tiêu nghiên cứu, phạm vi ứng dụng CNN cho bài toán phân loại độ chín quả vải.</p></div></li>
-        <li><span class="t-date" data-i18n="tl.d2">Đang cập nhật</span><div><h3 data-i18n="tl.m2">Thu thập dữ liệu</h3><p data-i18n="tl.m2d">Thu thập hình ảnh quả vải ở các mức độ chín khác nhau, gán nhãn và chuẩn hóa dữ liệu để phục vụ huấn luyện.</p></div></li>
-        <li><span class="t-date" data-i18n="tl.d3">Đang cập nhật</span><div><h3 data-i18n="tl.m3">Huấn luyện mô hình</h3><p data-i18n="tl.m3d">Xây dựng và huấn luyện mô hình CNN trên bộ dữ liệu đã gán nhãn, kiểm tra trên hình ảnh mới và đánh giá bằng Accuracy, Precision, Recall, F1-Score.</p></div></li>
-        <li><span class="t-date" data-i18n="tl.d4">Đang cập nhật</span><div><h3 data-i18n="tl.m4">Xây dựng giao diện</h3><p data-i18n="tl.m4d">Phát triển giao diện LycheeScan để người dùng tải ảnh và xem kết quả phân tích độ chín.</p></div></li>
-        <li><span class="t-date" data-i18n="tl.d5">Đang cập nhật</span><div><h3 data-i18n="tl.m5">Triển lãm NCKH</h3><p data-i18n="tl.m5d">Trình bày kết quả thực nghiệm, đánh giá khả năng ứng dụng thực tế và đề xuất hướng phát triển tiếp.</p></div></li>
+        <li><span class="t-date" aria-hidden="true">-</span><div><h3 data-i18n="tl.m1">Khởi tạo ý tưởng</h3><p data-i18n="tl.m1d">Xác định đề tài và mục tiêu nghiên cứu, phạm vi ứng dụng CNN cho bài toán phân loại độ chín quả vải.</p></div></li>
+        <li><span class="t-date" aria-hidden="true">-</span><div><h3 data-i18n="tl.m2">Thu thập dữ liệu</h3><p data-i18n="tl.m2d">Thu thập hình ảnh quả vải ở các mức độ chín khác nhau, gán nhãn và chuẩn hóa dữ liệu để phục vụ huấn luyện.</p></div></li>
+        <li><span class="t-date" aria-hidden="true">-</span><div><h3 data-i18n="tl.m3">Huấn luyện mô hình</h3><p data-i18n="tl.m3d">Xây dựng và huấn luyện mô hình CNN trên bộ dữ liệu đã gán nhãn, kiểm tra trên hình ảnh mới và đánh giá bằng Accuracy, Precision, Recall, F1-Score.</p></div></li>
+        <li><span class="t-date" aria-hidden="true">-</span><div><h3 data-i18n="tl.m4">Xây dựng giao diện</h3><p data-i18n="tl.m4d">Phát triển giao diện LycheeScan để người dùng tải ảnh và xem kết quả phân tích độ chín.</p></div></li>
+        <li><span class="t-date" aria-hidden="true">-</span><div><h3 data-i18n="tl.m5">Triển lãm NCKH</h3><p data-i18n="tl.m5d">Trình bày kết quả thực nghiệm, đánh giá khả năng ứng dụng thực tế và đề xuất hướng phát triển tiếp.</p></div></li>
       </ol>
     </section>
 
     <!-- ============ FUTURE (placeholder) ============ -->
     <section class="view" data-view="future">
       <div class="page-head">
-        <h1 class="section-h" data-i18n="future.heading">Hướng phát triển tiềm năng</h1>
-        <p class="section-lede" data-i18n="future.lede">Những hướng tiềm năng nếu đề tài được mở rộng trong tương lai.</p>
-      </div>
-      <div class="scope-callout">
-        <span class="ph-icon sm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v5M12 16h.01" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></span>
-        <p data-i18n="future.scope">Trong khuôn khổ đề tài nghiên cứu khoa học kỹ thuật hiện tại, nhóm xác định dự án đã hoàn chỉnh và chưa có kế hoạch triển khai mở rộng thêm ở giai đoạn tiếp theo. Kết quả và quy trình thực hiện được dùng làm minh chứng năng lực nghiên cứu khoa học kỹ thuật, bổ sung vào hồ sơ năng lực (portfolio) học tập của các thành viên trong nhóm. Các gợi ý dưới đây là những hướng phát triển tiềm năng nếu đề tài được mở rộng trong tương lai, hiện không thuộc phạm vi triển khai của dự án.</p>
+        <h1 class="section-h" data-i18n="future.heading">Ý tưởng phát triển</h1>
+        <p class="section-lede" data-i18n="future.lede">Hướng phát triển tiếp theo nhằm mở rộng khả năng ứng dụng của mô hình.</p>
       </div>
       <ul class="idea-list">
         <li><span class="ph-icon sm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 3v4M3 5h4M19 17v4M17 19h4M12 4l1.7 4.3L18 10l-4.3 1.7L12 16l-1.7-4.3L6 10l4.3-1.7L12 4z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><h3 data-i18n="future.i1h">Mở rộng loại trái cây</h3><p data-i18n="future.i1">Áp dụng phương pháp cho các loại trái cây khác có sự thay đổi màu sắc và đặc điểm vỏ theo độ chín.</p></div></li>
@@ -501,6 +398,6 @@
   <div class="toast" id="toast" role="status"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.20.1/dist/ort.min.js"></script>
-  <script src="app.js?v=3"></script>
+  <script src="app.js"></script>
 </body>
 </html>
