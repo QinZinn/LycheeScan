@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="32" cy="38" r="22" fill="%23e63956"/><ellipse cx="40" cy="16" rx="10" ry="5" fill="%234e9b47" transform="rotate(-24 40 16)"/></svg>' />
   <link rel="stylesheet" href="styles.css" />
+  <script>document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";</script>
 </head>
 <body>
   <!-- Nền: mesh blob lệch góc + grain -->
@@ -54,6 +55,11 @@
         <button type="button" data-lang="vi" aria-pressed="true">VI</button>
         <button type="button" data-lang="en" aria-pressed="false">EN</button>
       </div>
+
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false" aria-label="Chuyển sang giao diện tối">
+        <svg class="ico-moon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg class="ico-sun" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3L6.9 6.9M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
     </div>
   </header>
 

@@ -17,6 +17,9 @@ const I18N = {
     "nav.team": "Đội nhóm",
     "nav.gallery": "Thư viện",
 
+    "theme.toDark": "Chuyển sang giao diện tối",
+    "theme.toLight": "Chuyển sang giao diện sáng",
+
     "hero.eyebrow": "Đề tài nghiên cứu khoa học",
     "hero.titleA": "Soi độ chín quả vải",
     "hero.titleB": "bằng trí tuệ nhân tạo",
@@ -133,6 +136,9 @@ const I18N = {
     "nav.team": "Team",
     "nav.gallery": "Gallery",
 
+    "theme.toDark": "Switch to dark mode",
+    "theme.toLight": "Switch to light mode",
+
     "hero.eyebrow": "Science research project",
     "hero.titleA": "Reading lychee ripeness",
     "hero.titleB": "with AI",
@@ -243,6 +249,7 @@ const I18N = {
 };
 
 let lang = localStorage.getItem("lang") || "vi";
+let theme = localStorage.getItem("theme") || "light";
 
 /* 3 mức chín: icon + display + hint theo ngữ */
 const LEVELS = {
@@ -273,6 +280,7 @@ const els = {
   navMenu: $("nav-menu"),
   navToggle: $("nav-toggle"),
   langToggle: $("lang-toggle"),
+  themeToggle: $("theme-toggle"),
 
   // product
   states: {
@@ -545,6 +553,20 @@ function setAlts() {
   if (els.scanImg) els.scanImg.alt = lang === "vi" ? "Ảnh đang được phân tích" : "Photo being analyzed";
   if (els.resultImg) els.resultImg.alt = lang === "vi" ? "Ảnh quả vải đã phân tích" : "Analyzed lychee photo";
   if (els.navToggle) els.navToggle.setAttribute("aria-label", lang === "vi" ? "Mở menu" : "Open menu");
+  if (els.themeToggle) els.themeToggle.setAttribute("aria-label", t(theme === "dark" ? "theme.toLight" : "theme.toDark"));
+}
+
+/* ============================================================
+   Theme (sáng / tối), mặc định sáng
+   ============================================================ */
+function applyTheme(next) {
+  theme = next;
+  localStorage.setItem("theme", theme);
+  document.documentElement.dataset.theme = theme;
+  els.themeToggle.setAttribute("aria-pressed", String(theme === "dark"));
+  els.themeToggle.setAttribute("aria-label", t(theme === "dark" ? "theme.toLight" : "theme.toDark"));
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.setAttribute("content", theme === "dark" ? "#1a0f13" : "#e63956");
 }
 
 /* ============================================================
@@ -773,6 +795,9 @@ els.langToggle.querySelectorAll("button").forEach((b) => {
   b.addEventListener("click", () => applyLang(b.dataset.lang));
 });
 
+// theme toggle (sáng / tối)
+els.themeToggle.addEventListener("click", () => applyTheme(theme === "dark" ? "light" : "dark"));
+
 // chọn model AI
 els.modelOpts.forEach((btn) => {
   btn.addEventListener("click", () => {
@@ -811,5 +836,6 @@ els.camSwitch.addEventListener("change", renderCam);
 /* ============================================================
    Init
    ============================================================ */
+applyTheme(theme);
 applyLang(lang);
 setView(currentViewFromHash());
