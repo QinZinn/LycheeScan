@@ -114,8 +114,8 @@ const I18N = {
     "team.n7": "Vương Quang Nghị", "team.r7": "Huấn luyện mô hình", "team.a7": "Lớp 9 · Dewey",
 
     "gal.heading": "Thư viện",
-    "gal.lede": "Ảnh chụp quá trình thực hiện và kết quả sẽ được bổ sung tại đây.",
-    "gal.cap": "Ảnh mẫu",
+    "gal.lede": "Ảnh chụp quá trình thực hiện và kết quả của dự án.",
+    "gal.cap": "Ảnh dự án",
 
     "foot.note": "Demo NCKH · Mô hình phân loại độ chín quả vải",
 
@@ -233,8 +233,8 @@ const I18N = {
     "team.n7": "Vương Quang Nghị", "team.r7": "Model training", "team.a7": "Grade 9 · Dewey",
 
     "gal.heading": "Gallery",
-    "gal.lede": "Photos from the work and results will be added here.",
-    "gal.cap": "Sample",
+    "gal.lede": "Photos from the project's work and results.",
+    "gal.cap": "Project photo",
 
     "foot.note": "Science fair demo · Lychee ripeness classifier",
 
